@@ -8,16 +8,20 @@
   <script>
 let usp = new URLSearchParams();
 
+alert(usp.has("a"));
+    
 if(usp.has("a")) {
  let a = usp.get("a");
  let n = (navigator.platform || "Unknown");
  switch (n) {
-  case "iPhone" :
+  case "iPhone":
    location.href = "maps://?address="+a;
-  case "Android" :
+  case "Android":
    window.open("geo:0,0?q="+a);
-  case "Win32" :
+  case "Win32":
    location.href = "bingmaps:?q="+a+"sty=a";
+  default:
+   console.log(navigator.platform);
  }
 }
   </script>
