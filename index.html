@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Redirecting to your map app...</title>
+  </head>
+  <body>
+  </body>
+  <script>
+let usp = new URLSearchParams();
+
+if(usp.has("a")) {
+ let a = usp.get("a");
+ let n = (navigator.platform || "Unknown");
+ switch (n) {
+  case "iPhone" :
+   location.href = "maps://?address="+a;
+  case "Android" :
+   window.open("geo:0,0?q="+a);
+  case "Win32" :
+   location.href = "bingmaps:?q="+a+"sty=a";
+ }
+}
+  </script>
+</html>
