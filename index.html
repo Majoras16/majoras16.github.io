@@ -6,9 +6,7 @@
   <body>
   </body>
   <script>
-let usp = new URLSearchParams();
-
-alert(usp.has("a"));
+let usp = new URLSearchParams(location.search);
     
 if(usp.has("a")) {
  let a = usp.get("a");
