@@ -11,11 +11,10 @@ let usp = new URLSearchParams(location.search);
 if(usp.has("a")) {
  let a = usp.get("a");
  let n = (navigator.platform || "Unknown");
- alert(n);
  switch (n) {
   case "iPhone":
-   alert();
-   window.open("maps://?address="+a);
+   alert(a);
+   window.open("map://?address="+a);
   case "Android":
    window.open("geo:0,0?q="+a);
   case "Win32":
