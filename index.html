@@ -13,7 +13,7 @@ if(usp.has("a")) {
  let n = (navigator.platform || "Unknown");
  switch (n) {
   case "iPhone":
-   window.open("https://maps.apple.com/?address="+a);
+   window.location.replace("https://maps.apple.com/?address="+a);
   case "Android":
    window.open("geo:0,0?q="+a);
   case "Win32":
