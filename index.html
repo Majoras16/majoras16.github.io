@@ -13,12 +13,16 @@ if(usp.has("a")) {
  let n = (navigator.platform || "Unknown");
  switch (n) {
   case "iPhone":
+   alert("iPhone");
    window.open("https://maps.apple.com/?address="+a,"_blank");
   case "Android":
+   alert("And");
    window.open("geo:0,0?q="+a);
   case "Win32":
+   alert("win"):
    location.href = "bingmaps:?q="+a+"sty=a";
   default:
+   alert("def");
    console.log(navigator.platform);
  }
 }
