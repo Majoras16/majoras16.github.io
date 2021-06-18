@@ -2,29 +2,35 @@
 <html>
   <head>
     <title>Redirecting to your map app...</title>
+    <style>
+a {
+ display: none;
+}
+   </style>
   </head>
-  <body>
+  <body><a>Lancer l'application</a>
   </body>
   <script>
 let usp = new URLSearchParams(location.search);
-    
+
+function setA(s) {
+ let a = document.querySelectorAll("a")[0];
+ a.href = s;
+ a.style.display = "inline-block";
+}
+
 if(usp.has("a")) {
  let a = usp.get("a");
  let n = (navigator.platform || "Unknown");
  switch (n) {
   case "iPhone":
-   alert("iPhone");
-   window.open("https://maps.apple.com/?address="+a,"_blank");
+   setA("https://maps.apple.com/?address="+a);
   case "Android":
-   alert("And");
-   window.open("geo:0,0?q="+a);
+   setA("geo:0,0?q="+a);
   case "Win32":
-   alert("win");
-   location.href = "bingmaps:?q="+a+"sty=a";
+   setA("bingmaps:?q="+a+"sty=a");
   default:
-   alert("def");
    console.log(navigator.platform);
  }
-}
   </script>
 </html>
