@@ -21,7 +21,7 @@ function setA(s) {
  let a = document.querySelectorAll("a")[0];
  a.href = s;
  a.style.display = "inline-block";
- if(usp.has("l") {
+ if(usp.has("l")) {
   let l = atob(usp.get("l").replace(/_/g,"=")).split(";");
   document.body.innerHTML = "<img src='https://tile.openstreetmap.org/17/"+lon2tile(l[0],17)+"/"+lat2tile(l[1],17)+".png' />";
  }
