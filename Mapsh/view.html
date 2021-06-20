@@ -34,8 +34,8 @@ let usp = new URLSearchParams(location.search);
 function lon2tile(lon,zoom){return (Math.floor((lon+180)/360*Math.pow(2,zoom)));}
 function lat2tile(lat,zoom){return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2*Math.pow(2,zoom)));}
 
-function setA(s) {
- document.body.innerHTML = "<b>Localisation :</b> "+a+"<br/>"+document.body.innerHTML;
+function setA(s,ad) {
+ document.body.innerHTML = "<b>Localisation :</b> "+ad+"<br/>"+document.body.innerHTML;
  let a = document.querySelectorAll("a")[0];
  a.href = s;
  a.style.display = "inline-block";
@@ -49,11 +49,11 @@ if(usp.has("a")) {
  let a = usp.get("a");
  let n = (navigator.platform || "Unknown");
  if(n === "iPhone") {
-  setA("https://maps.apple.com/?address="+a);
+  setA("https://maps.apple.com/?address="+a,a);
  } else if(n === "Android") {
-  setA("geo:0,0?q="+a);
+  setA("geo:0,0?q="+a,a);
  } else if(n === "Win32") {
-  setA("bingmaps:?q="+a+"&sty=a");
+  setA("bingmaps:?q="+a+"&sty=a",a);
  } else {
   alert("Syst\u00e0me inconnu");
  }
@@ -61,11 +61,11 @@ if(usp.has("a")) {
  let l = atob(usp.get("l").replace(/_/g,"=")).split(";");
  let n = (navigator.platform || "Unknown");
  if(n === "iPhone") {
-  setA("https://maps.apple.com/?address="+l[0]+","+l[1]);
+  setA("https://maps.apple.com/?address="+l[0]+","+l[1],l);
  } else if(n === "Android") {
-  setA("geo:0,0?q="+l[0]+","+l[1]);
+  setA("geo:0,0?q="+l[0]+","+l[1],l);
  } else if(n === "Win32") {
-  setA("bingmaps:?collection=point."+l[0]+"_"+l[1]+"&lvl=20&sty=a");
+  setA("bingmaps:?collection=point."+l[0]+"_"+l[1]+"&lvl=20&sty=a",l);
  } else {
   alert("Syst\u00e0me inconnu");
  }
