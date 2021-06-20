@@ -5,6 +5,10 @@
     <style>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 
+body {
+ font-family: "Noto Sans JP", Verdana, sans-serif;
+}
+
 a {
  display: none;
  background: white;
@@ -31,6 +35,7 @@ function lon2tile(lon,zoom){return (Math.floor((lon+180)/360*Math.pow(2,zoom)));
 function lat2tile(lat,zoom){return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2*Math.pow(2,zoom)));}
 
 function setA(s) {
+ document.body.innerHTML = "<b>Localisation :</b> "+a+"<br/>"+document.body.innerHTML;
  let a = document.querySelectorAll("a")[0];
  a.href = s;
  a.style.display = "inline-block";
