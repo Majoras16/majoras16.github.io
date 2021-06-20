@@ -23,6 +23,9 @@ a {
 a:hover {
  bow-shadow: inset 0px 3px 5px rgb(150,150,150);
 }
+b {
+ font-weight: bold;
+}
    </style>
   </head>
   <body>
@@ -35,13 +38,13 @@ function lon2tile(lon,zoom){return (Math.floor((lon+180)/360*Math.pow(2,zoom)));
 function lat2tile(lat,zoom){return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2*Math.pow(2,zoom)));}
 
 function setA(s,ad) {
- document.body.innerHTML = "<b>Localisation :</b> "+ad+"<br/>"+document.body.innerHTML;
+ document.body.innerHTML = "<b>Adresse entrée :</b> "+ad+"<br/>"+document.body.innerHTML;
  let a = document.querySelectorAll("a")[0];
  a.href = s;
  a.style.display = "inline-block";
  if(usp.has("l")) {
   let l = atob(usp.get("l").replace(/_/g,"=")).split(";");
-  document.body.innerHTML = "<img src='https://tile.openstreetmap.org/17/"+lon2tile(l[0],17)+"/"+lat2tile(l[1],17)+".png' />";
+  document.body.innerHTML = "<img src='https://tile.openstreetmap.org/17/"+lon2tile(l[0],17)+"/"+lat2tile(l[1],17)+".png' /><br /><b>Coordonnées :</b> "+ad;
  }
 }
 
