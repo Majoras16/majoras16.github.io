@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Créer un lien</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <style>
+* {
+ font-family: "Noto Sans JP", Verdana, sans-serif;
+ text-align: center;
+ margin: 0px;
+ padding: 0px;
+}
+
+#main {
+ box-shadow: 0px 5px 10px rgb(200,200,200);
+ margin: 20px;
+ padding: 10px;
+ border-radius: 20px;
+}
+#title {
+ font-size: 7vw;
+ display: block;
+}
+button {
+ font-size: 4vw;
+ background: white;
+ border: none;
+ width: 75%;
+ padding: 5px;
+ margin: 5px;
+ border-radius: 25px;
+ box-shadow: 0px 2px 5px rgb(200,200,200);
+}
+button:active {
+ box-shadow: inset 0px 2px 5px rgb(200,200,200);
+}
+#result {
+ display: inline-block;
+ text-align: center;
+ width: 75%;
+ margin: 15px;
+ font-size: 3.5vw;
+ word-break: break-all;
+ color: black;
+ text-decoration: none;
+}
+#result-help {
+ display: none;
+ margin: 5px;
+}
+  </style>
+  <meta charset="utf-8">
+ </head>
+
+ <body>
+  <div id="main">
+   <span id="title">Créer un lien</span>
+   <br />
+   <button onClick="getGeo()">Utiliser ma localisation</button><br /><button onClick="askGeo()">Utiliser une adresse</button>
+   <br />
+   <div id="result-help">Voilà votre lien, il ne vous reste plus qu'à le partager !</div>
+   <a id="result"></a>
+  </div>
+ </body>
+ <script>
+// Hack for iOS who don't detect :active
+document.addEventListener("touchstart", function() {}, false);
+
+function askGeo() {
+ let p = encodeURI(prompt("Entrez une adresse"));
+ let a = document.querySelector("#result")
+ a.href = "view.html?a="+p;
+ a.innerHTML = a.href;
+ document.querySelector("#result-help").style.display = "block";
+}
+ </script>
+</html>
