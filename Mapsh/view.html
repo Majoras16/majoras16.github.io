@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Redirection...</title>
+ </head>
+
+ <body>
+ </body>
+ <script>
+let usp = new URLSearchParams(location.search);
+
+function setA(u) {
+ let e = document.createElement("a");
+ e.href = u;
+ e.click();
+}
+
+if(usp.has("a")) {
+ let a = usp.get("a");
+ let n = (navigator.platform || "Unknown");
+ if(n === "iPhone") {
+  setA("https://maps.apple.com/?address="+a);
+ } else if(n === "Android") {
+  setA("geo:0,0?q="+a);
+ } else if(n === "Win32") {
+  setA("bingmaps:?q="+a+"&sty=a");
+ } else {
+  alert("Syst\u00e0me inconnu");
+ }
+} else if(usp.has("l")) {
+ let l = atob(usp.get("l").replace(/_/g,"=")).split(";");
+ let n = (navigator.platform || "Unknown");
+ if(n === "iPhone") {
+  setA("https://maps.apple.com/?address="+l[0]+","+l[1]);
+ } else if(n === "Android") {
+  setA("geo:0,0?q="+l[0]+","+l[1]);
+ } else if(n === "Win32") {
+  setA("bingmaps:?collection=point."+l[0]+"_"+l[1]+"&lvl=20&sty=a");
+ } else {
+  alert("Syst\u00e0me inconnu");
+ }
+} else {
+ alert("Aucune adresse ou coordonn\u00e9es entr\u00e9.");
+ location.href = "share.html";
+}
+ </script>
+</html>
