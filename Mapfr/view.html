@@ -8,6 +8,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
 body {
     padding: 0;
@@ -20,5 +21,26 @@ html, body, #map {
 </style>
  </head>
  <body>
+  <div id="map"></div>
  </body>
+ <script>
+var map = L.map("map").fitWorld();
+
+L.tileLayer("https://tile.openstreetmap.org/${z}/${x}/${y}.png", {
+    attribution: "Carte et ses données par les contributeurs &copy; d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>",
+    maxZoom: 18,
+    tileSize: 512,
+    zoomOffset: -1
+}).addTo(map);
+
+map.locate({setView: true, maxZoom: 16});
+
+function onLocationFound(e) {
+ var radius = e.accuracy;
+ L.marker(e.latlng).addTo(map).bindPopup("Vous êtes dans un rayon de "+radius+" de ce point").openPopup();
+ L.circle(e.latlng, radius).addTo(map);
+}
+
+map.on("locationfound", onLocationFound);
+ </script>
 </html>
