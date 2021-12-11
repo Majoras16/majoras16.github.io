@@ -25,7 +25,7 @@ if(usp.has("a")) {
  } else if(n === "Win32") {
   setA("bingmaps:?q="+a+"&sty=a");
  } else {
-  alert(n);
+  setA("https://www.google.com/maps/search/?api=1&query="+a);
  }
 } else if(usp.has("l")) {
  let l = atob(usp.get("l").replace(/_/g,"=")).split(";");
@@ -37,10 +37,9 @@ if(usp.has("a")) {
  } else if(n === "Win32") {
   setA("bingmaps:?collection=point."+l[0]+"_"+l[1]+"&lvl=20&sty=a");
  } else {
-  alert(n);
+  setA("https://www.google.com/maps/search/?api=1&query="+l[0]+"%3C"+l[1]):
  }
 } else {
- alert("Aucune adresse ou coordonn\u00e9es entr\u00e9.");
  location.href = "share.html";
 }
  </script>
